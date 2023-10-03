@@ -14,8 +14,12 @@ import java.util.List;
 @Controller
 public class HelloController {
 
-    @Autowired
+
     private UserService userService;
+    @Autowired
+    public HelloController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(value = "/")
     public String printWelcome(ModelMap model) {
