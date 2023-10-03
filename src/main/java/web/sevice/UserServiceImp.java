@@ -12,8 +12,12 @@ import java.util.List;
 public class UserServiceImp implements UserService{
 
 
+    private final Dao dao;
     @Autowired
-    private Dao dao;
+    public UserServiceImp(Dao dao) {
+        this.dao = dao;
+    }
+
     @Override
     @Transactional
     public List<User> getAllUsers() {return dao.getAllUsers();}
