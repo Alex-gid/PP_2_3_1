@@ -23,8 +23,13 @@
         <td th:text="${User.getFirstName()}"></td>
         <td th:text="${User.getLastName()}"></td>
         <td th:text="${User.getEmail()}"></td>
+<<<<<<< HEAD
         <td><a th:href="@{'/updateInfo?userId=' + ${User.getId()}}">Update</a></td>
         <td><a th:href="@{'/deleteUser?userId=' + ${User.getId()}}">Delete</a></td>
+=======
+        <td><a th:href="@{'/updateInfo?userID=' + ${User.getId()}}">Update</a></td>
+        <td><a th:href="@{'/deleteUser?userID=' + ${User.getId()}}">Delete</a></td>
+>>>>>>> 75f575af41158fa4561b84c239b46d76c2361bb4
 
     </tr>
     </tbody>
