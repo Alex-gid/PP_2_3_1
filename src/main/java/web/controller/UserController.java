@@ -6,22 +6,22 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
-import web.sevice.UserService;
+import web.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class HelloController {
+public class UserController {
 
 
-    private UserService userService;
+    private final UserService userService;
     @Autowired
-    public HelloController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/")
+    @GetMapping("/")
     public String printWelcome(ModelMap model) {
         List<String> messages = new ArrayList<>();
         messages.add("Hello!");
@@ -31,10 +31,9 @@ public class HelloController {
         return "hello";
     }
 
-    @GetMapping(value = "/allusers")
+    @GetMapping("/allusers")
     public String getAllUsers(Model model) {
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("allUsers", users);
+        model.addAttribute("allUsers", userService.getAllUsers());
         return "all-users";
     }
 
@@ -52,12 +51,12 @@ public class HelloController {
 
 
     @GetMapping("/updateInfo")
-    public String updateUser(@RequestParam("userID") int id, Model model) {
+    public String updateUser(@RequestParam("userId") int id, Model model) {
         model.addAttribute("user", userService.getUser(id));
         return "user-info";
     }
 
-    @RequestMapping("/deleteUser")
+    @GetMapping("/deleteUser")
     public String deleteEmployee(@RequestParam("userID") int id) {
         userService.deleteUser(id);
         return "redirect:/allusers";

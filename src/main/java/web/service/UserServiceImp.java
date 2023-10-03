@@ -1,4 +1,4 @@
-package web.sevice;
+package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,19 +11,22 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService{
 
-
+    private final Dao dao;
     @Autowired
-    private Dao dao;
+    public UserServiceImp(Dao dao) {
+        this.dao = dao;
+    }
+
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {return dao.getAllUsers();}
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public void saveUser(User user) {dao.saveUser(user);}
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public User getUser(int id) {return dao.getUser(id);}
 
     @Override

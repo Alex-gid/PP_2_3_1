@@ -10,8 +10,12 @@ import java.util.List;
 @Repository
 public class DaoImp implements Dao{
 
-    @Autowired
     private SessionFactory sessionFactory;
+    @Autowired
+    public DaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public List<User> getAllUsers() {
         return sessionFactory.getCurrentSession().createQuery("from User", User.class).getResultList();
